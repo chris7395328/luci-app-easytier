@@ -28,7 +28,7 @@ jobs:
           - arm_cortex-a15_neon-vfpv4
         sdk:
           - openwrt-22.03
-          - SNAPSHOT
+          
 
     steps:
       - uses: actions/checkout@v4
