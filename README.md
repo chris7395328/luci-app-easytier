@@ -6,6 +6,8 @@
 右上角Fork克隆本项目，去actions手动触发自动编译流程，2分钟后就能获取最新ipk压缩包`luci-app-easytier.zip`解压上传到Openwrt软路由安装即可
 
 ```
+> 其中`SNAPSHOT`后缀的是apk安装包，`openwrt-22.03`的是ipk安装包
+ 
 ![actions界面](https://github.com/user-attachments/assets/7e5e843b-eb01-48f1-81ab-226a1418ca0f)
 ### 安装方法
 ```bash
@@ -50,3 +52,18 @@ cd /opt/openwrt-sdk*/bin/packages/aarch64_generic/base
 #移动到/opt目录里
 mv *.ipk /opt/luci-app-easytier_all.ipk
 ```
+
+> 如果在 状态-系统日志里 出现下图日志内容可以使用以下命令解决
+
+```
+Fri Feb  7 11:13:30 2025 daemon.err uhttpd[3381]: luci.util.pcdata() has been replaced by luci.xml.pcdata() - Please update your code.
+Fri Feb  7 11:13:30 2025 daemon.err uhttpd[3381]: luci.util.pcdata() has been replaced by luci.xml.pcdata() - Please update your code.
+Fri Feb  7 11:13:30 2025 daemon.err uhttpd[3381]: luci.util.pcdata() has been replaced by luci.xml.pcdata() - Please update your code.
+Fri Feb  7 11:13:30 2025 daemon.err uhttpd[3381]: luci.util.pcdata() has been replaced by luci.xml.pcdata() - Please update your code.
+Fri Feb  7 11:13:30 2025 daemon.err uhttpd[3381]: luci.util.pcdata() has been replaced by luci.xml.pcdata() - Please update your code.
+```
+
+```
+sed -i 's/util/xml/g' /usr/lib/lua/luci/model/cbi/easytier.lua
+```
+
